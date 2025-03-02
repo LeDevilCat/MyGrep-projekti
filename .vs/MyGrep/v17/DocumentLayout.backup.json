@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\niemi\\GitRepositories\\MyGrep-projekti\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4A67AC11-E63B-437A-BCA8-8EAE906D629F}|ConsoleApplication1\\ConsoleApplication1.vcxproj|C:\\Users\\niemi\\GitRepositories\\MyGrep-projekti\\ConsoleApplication1\\ConsoleApplication1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4A67AC11-E63B-437A-BCA8-8EAE906D629F}|ConsoleApplication1\\ConsoleApplication1.vcxproj|solutionrelative:ConsoleApplication1\\ConsoleApplication1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{4A67AC11-E63B-437A-BCA8-8EAE906D629F}|ConsoleApplication1\\ConsoleApplication1.vcxproj|C:\\Users\\niemi\\GitRepositories\\MyGrep-projekti\\ConsoleApplication1\\MyGrep.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A67AC11-E63B-437A-BCA8-8EAE906D629F}|ConsoleApplication1\\ConsoleApplication1.vcxproj|solutionrelative:ConsoleApplication1\\MyGrep.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,12 +19,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ConsoleApplication1.cpp",
-              "DocumentMoniker": "C:\\Users\\niemi\\GitRepositories\\MyGrep-projekti\\ConsoleApplication1\\ConsoleApplication1.cpp",
-              "RelativeDocumentMoniker": "ConsoleApplication1\\ConsoleApplication1.cpp",
-              "ToolTip": "C:\\Users\\niemi\\GitRepositories\\MyGrep-projekti\\ConsoleApplication1\\ConsoleApplication1.cpp*",
-              "RelativeToolTip": "ConsoleApplication1\\ConsoleApplication1.cpp*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAJAAAAAAAAAA==",
+              "Title": "MyGrep.cpp",
+              "DocumentMoniker": "C:\\Users\\niemi\\GitRepositories\\MyGrep-projekti\\ConsoleApplication1\\MyGrep.cpp",
+              "RelativeDocumentMoniker": "ConsoleApplication1\\MyGrep.cpp",
+              "ToolTip": "C:\\Users\\niemi\\GitRepositories\\MyGrep-projekti\\ConsoleApplication1\\MyGrep.cpp",
+              "RelativeToolTip": "ConsoleApplication1\\MyGrep.cpp",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAFcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-21T07:59:31.609Z",
               "EditorCaption": ""

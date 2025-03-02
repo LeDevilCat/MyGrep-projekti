@@ -24,7 +24,7 @@
     <ProjectGuid>{4a67ac11-e63b-437a-bca8-8eae906d629f}</ProjectGuid>
     <RootNamespace>ConsoleApplication1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>MyGrep-ConsoleApplication</ProjectName>
+    <ProjectName>MyGrep</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

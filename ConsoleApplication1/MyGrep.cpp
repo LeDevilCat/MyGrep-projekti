@@ -1,8 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
+
+// Funktio muuntaa merkkijonon pieniksi kirjaimiksi
+string toLowerCase(const string& str) {
+    string lower = str;
+    transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+    return lower;
+}
 
 int main(int argc, char* argv[]) {
     // Asetetaan paikallinen asetukset suomen kielelle
@@ -10,16 +18,20 @@ int main(int argc, char* argv[]) {
 
     // Jos komentoriviparametreja ei ole annettu
     if (argc == 1) {
-        // Käyttäjä syöttää lauseen ja hakusanan
         string sana, lause;
 
+        // Pyydetään käyttäjää syöttämään merkkijono ja hakusana
         cout << "Syötä merkkijono josta etsiä hakutulosta: ";
         getline(cin, lause);
         cout << endl << "Syötä hakusana: ";
         getline(cin, sana);
 
-        // Etsitään hakusanaa lauseesta
-        size_t index = lause.find(sana);
+        // Muutetaan molemmat pieniksi kirjaimiksi
+        string lauseLower = toLowerCase(lause);
+        string sanaLower = toLowerCase(sana);
+
+        // Etsitään hakusanaa annetusta merkkijonosta (pienillä kirjaimilla)
+        size_t index = lauseLower.find(sanaLower);
         if (index != string::npos) {
             cout << "Hakusana löytyi lauseesta kohdasta " << index << endl;
         }
@@ -27,30 +39,42 @@ int main(int argc, char* argv[]) {
             cout << "Hakusanaa ei löytynyt lauseesta" << endl;
         }
     }
-    // Jos komentoriviparametreja on 3 tai 4
-    else if (argc == 3 || argc == 4) {
-        bool l_option = false, o_option = false;
+    // Jos komentoriviparametreja on annettu
+    else if (argc >= 3) {
+        bool l_option = false, o_option = false, i_option = false, r_option = false;
         string hakusana, tiedostonimi;
 
-        // Jos optioita on annettu
-        if (argc == 4) {
+        int index = 1;
+        // Tarkistetaan, onko optioita annettu
+        if (argv[1][0] == '-') {
             string optiot = argv[1];
             if (optiot.find('l') != string::npos) l_option = true;
             if (optiot.find('o') != string::npos) o_option = true;
-            hakusana = argv[2];
-            tiedostonimi = argv[3];
+            if (optiot.find('i') != string::npos) i_option = true;
+            if (optiot.find('r') != string::npos) r_option = true;
+            index++;
         }
-        // Jos optioita ei ole annettu
+
+        // Tarkistetaan, onko hakusana ja tiedostonimi annettu
+        if (argc > index + 1) {
+            hakusana = argv[index];
+            tiedostonimi = argv[index + 1];
+        }
         else {
-            hakusana = argv[1];
-            tiedostonimi = argv[2];
+            cerr << "Virhe: Puuttuu hakusana tai tiedostonimi!" << endl;
+            return 1;
         }
 
         // Avataan tiedosto
         ifstream tiedosto(tiedostonimi);
         if (!tiedosto) {
-            cerr << "Virhe: Tiedostoa ei voitu avata!" << endl;
+            cerr << "Virhe: Tiedostoa '" << tiedostonimi << "' ei voitu avata!" << endl;
             return 1;
+        }
+
+        // Muutetaan hakusana pieniksi kirjaimiksi, jos 'i' optio on annettu
+        if (i_option) {
+            hakusana = toLowerCase(hakusana);
         }
 
         string rivi;
@@ -61,17 +85,25 @@ int main(int argc, char* argv[]) {
         while (getline(tiedosto, rivi)) {
             rivinumero++;
 
-            // Jos hakusana löytyy riviltä
-            if (rivi.find(hakusana) != string::npos) {
+            // Muutetaan rivi pieniksi kirjaimiksi, jos 'i' optio on annettu
+            string vertailtavaRivi = i_option ? toLowerCase(rivi) : rivi;
+
+            // Tarkistetaan, löytyykö hakusana riviltä
+            bool loytyi = (vertailtavaRivi.find(hakusana) != string::npos);
+
+            // Tulostetaan rivi, jos hakusana löytyy tai ei löydy riippuen 'r' optiosta
+            if ((r_option && !loytyi) || (!r_option && loytyi)) {
                 if (l_option) cout << rivinumero << ": ";
                 cout << rivi << endl;
                 loydetytRivit++;
             }
         }
 
-        // Jos 'o' optio on annettu, tulostetaan löytyneiden rivien määrä
+        // Tulostetaan löytyneiden rivien määrä, jos 'o' optio on annettu
         if (o_option) {
-            cout << "Occurrences of lines containing \"" << hakusana << "\": " << loydetytRivit << endl;
+            cout << "Rivien määrä, jotka "
+                << (r_option ? "EIVÄT " : "")
+                << "sisältävät \"" << hakusana << "\": " << loydetytRivit << endl;
         }
 
         // Suljetaan tiedosto
